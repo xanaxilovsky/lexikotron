@@ -12,11 +12,10 @@ class AdminGlossaryController extends ModuleAdminController
         $this->table      = 'lexikotron';
         $this->className  = 'Glossary';
         $this->identifier = "id_lexikotron";
+        $this->lang = true;
         $this->bootstrap  = true;
 
-        $this->_join = 'LEFT JOIN `' . _DB_PREFIX_ . 'lexikotron_lang` ll ON (a.`id_lexikotron` = ll.`id_lexikotron`)';
-
-        $this->_select = 'll.*';
+        $this->context = Context::getContext();
 
         parent::__construct();
     }
@@ -72,7 +71,8 @@ class AdminGlossaryController extends ModuleAdminController
             'tinymce' => true,
             'legend'  => array(
                 'title' => $this->l('Glossary'),
-                'image' => '../img/admin/cog.gif',
+                //'image' => '../img/admin/cog.gif',
+                'icon' => 'icon-plus-sign-alt'
             ),
             'input'   => array(
                 array(
@@ -110,8 +110,8 @@ class AdminGlossaryController extends ModuleAdminController
                 ),
             ),
             'submit'  => array(
-                'title' => $this->l('Save'),
-                'class' => 'button',
+                'title' => $this->l('Save'), // This is the button that saves the whole fieldset.
+                'class' => 'btn btn-default pull-right'
             ),
         );
 
